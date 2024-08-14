@@ -3,7 +3,6 @@ info:
   version: 1.0.0
   title: JSON Placeholder API
   description: See https://jsonplaceholder.typicode.com/
-  basePath: https://jsonplaceholder.typicode.com
 paths:
   /posts:
     post:
@@ -14,7 +13,7 @@ paths:
           "application/json":
             schema:
               $ref: "#/components/schemas/CreatePostPayload"
-      response:
+      responses:
         "201":
           description: Post created
           content:
@@ -23,6 +22,8 @@ paths:
                 $ref: "#/components/schemas/CreatePostResponse"
         "400":
           description: Failed to create post
+      x-okStatus: 201
+      x-errStatus: 400
 
 components:
   schemas:

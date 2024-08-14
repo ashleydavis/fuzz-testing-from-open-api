@@ -21,10 +21,10 @@ describe("Fuzz tests from OpenAPI", () => {
                 return [];
             }
  
-            const okStatus = 201;
-            const okBody = methodSpec.response?.[okStatus.toString()]?.content?.["application/json"]?.schema;
-            const errorStatus = 400;
-            const errorBody = methodSpec.response?.[errorStatus.toString()]?.content?.["application/json"]?.schema;
+            const okStatus = methodSpec["x-okStatus"]
+            const okBody = methodSpec.responses?.[okStatus.toString()]?.content?.["application/json"]?.schema;
+            const errorStatus = methodSpec["x-errStatus"]
+            const errorBody = methodSpec.responses?.[errorStatus.toString()]?.content?.["application/json"]?.schema;
 
             const data = generateData(bodySchema);
 
